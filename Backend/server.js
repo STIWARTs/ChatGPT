@@ -1,14 +1,15 @@
-import OpenAI from 'openai';
-import 'dotenv/config';
+import express from "express";
+import "dotenv/config";
+import cors from "cors";
 
-const client = new OpenAI({
-  apiKey: process.env.PENAI_API_KEY, 
+const app = express();  
+const PORT = 8080;
+
+// Middleware
+app.use(express.json()); //parse incoming JSON requests
+app.use(cors()); //enable CORS
+
+app.listen(PORT, () => {
+  
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-const response = await client.responses.create({
-  model: 'gpt-4o-mini',
-  // instructions: 'You are a coding assistant that talks like a pirate',
-  input: 'Joke related to Computer Science',
-});
-
-console.log(response.output_text);
