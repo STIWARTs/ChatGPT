@@ -2,9 +2,14 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import mongoose from "mongoose";  
+import chatRoutes from "./routes/chat.js";
 
 const app = express();  
 const PORT = 8080;
+
+
+//Routes
+app.use("/chat", chatRoutes);
 
 // Middleware
 app.use(express.json()); //parse incoming JSON requests
