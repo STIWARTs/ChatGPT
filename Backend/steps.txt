@@ -1,3 +1,0 @@
-server.js
-npm i express nodemon cors
-npm i openai
