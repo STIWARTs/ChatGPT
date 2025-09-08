@@ -1,0 +1,52 @@
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+
+# Local env files
+.env
+.env.*
+.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor
+.vscode/
+.idea/
+
+# Frontend/other caches
+.cache/
+.parcel-cache/
+
+# Dependency locks (optional)
+# package-lock.json
+# yarn.lock
+
+# Ignore backend and frontend node_modules explicitly
+Backend/node_modules/
+Frontend/node_modules/
+
+# Ignore sensitive keys and credentials
+*.pem
+*.key
+
+# Coverage
+coverage/
+
+# Misc
+.Dockerfile.dev
+
+# Allow listing
+!README.md
