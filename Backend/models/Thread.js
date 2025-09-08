@@ -1,18 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const MessageSchema = new mongoose.Schema({
     role: {
         type: String,
-        enum: ['user', 'assistant'],
-        required: true  
+        enum: ["user", "assistant"],
+        required: true
     },
     content: {
         type: String,
-        required: true  
+        required: true
     },
     timestamp: {
         type: Date,
-        default: Date.now  
+        default: Date.now
     }
 });
 
@@ -20,17 +20,21 @@ const ThreadSchema = new mongoose.Schema({
     threadId: {
         type: String,
         required: true,
-        unique: true  
+        unique: true
+    },
+    title: {
+        type: String,
+        default: "New Chat"
     },
     messages: [MessageSchema],
-    creadtedAt: {
+    createdAt: {
         type: Date,
-        default: Date.now  
+        default: Date.now
     },
     updatedAt: {
         type: Date,
-        default: Date.now  
+        default: Date.now
     }
-}); 
+});
 
-export default mongoose.model('Thread', ThreadSchema);
+export default mongoose.model("Thread", ThreadSchema);

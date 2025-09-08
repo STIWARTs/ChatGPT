@@ -1,7 +1,7 @@
 import "dotenv/config";
 
 const getOpenAIAPIResponse = async (message) => {
-    const options = {
+    const options = {    //OBJECT
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -9,7 +9,7 @@ const getOpenAIAPIResponse = async (message) => {
     },
     body: JSON.stringify({
       model: "gpt-4o-mini",
-      messages: [{ role: "user", content: message }],
+      messages: [{ role: "user", content: message }]
     })
   };
 
