@@ -8,7 +8,7 @@ const router = express.Router();
 router.post("/test", async(req, res) => {
     try {
         const thread = new Thread({
-            threadId: "abc",
+            threadId: "123",
             title: "Testing New Thread2"
         });
 
@@ -71,13 +71,13 @@ router.delete("/thread/:threadId", async (req, res) => {
 
 //Post a message to chat and get response from OpenAI
 router.post("/chat", async(req, res) => {
-    const {threadId, message} = req.body;
+    const {threadId, message} = req.body; //separate
 
-    if(!threadId || !message) {
+    if(!threadId || !message) { //1. validate
         res.status(400).json({error: "missing required fields"});
     }
 
-    try {
+    try { //2. check if threadId exists in Db
         let thread = await Thread.findOne({threadId});
 
         if(!thread) {
@@ -87,24 +87,23 @@ router.post("/chat", async(req, res) => {
                 title: message,
                 messages: [{role: "user", content: message}]
             });
-        } else {
+        } else { // 3. thread exists --> new message push/save gen by user
             thread.messages.push({role: "user", content: message});
         }
 
+        //4. get response from OpenAI API
         const assistantReply = await getOpenAIAPIResponse(message);
 
+        //5. push/save assistant reply to Db
         thread.messages.push({role: "assistant", content: assistantReply});
         thread.updatedAt = new Date();
 
         await thread.save();
-        res.json({reply: assistantReply});
+        res.json({reply: assistantReply}); //sent back to frontend
     } catch(err) {
         console.log(err);
         res.status(500).json({error: "something went wrong"});
     }
 });
-
-
-
 
 export default router;
