@@ -19,8 +19,8 @@ const getOpenAIAPIResponse = async (message) => {
     // console.log(data.choices[0].message.content); //reply from OpenAI
     return data.choices[0].message.content; //reply from OpenAI
     // res.json(data);
-  } catch (error) {
-    console.log(err);
+  } catch (err) {
+  console.error("Error in getOpenAIAPIResponse:", err.message);
   }
 };
 
