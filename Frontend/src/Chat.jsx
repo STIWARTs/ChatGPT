@@ -47,7 +47,7 @@ function Chat() {
                         </div>
                     )
                 }
-                {/* PRINT LATEST REPLY */}
+                {/* PRINT LATEST REPLY + TYPING EFFECT */}
                 {
                     prevChats.length > 0  && (
                         <>
@@ -58,10 +58,9 @@ function Chat() {
                                 </div>
                                 ) : (
                                     <div className="gptDiv" key={"typing"} >
-                                     <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{latestReply}</ReactMarkdown>
+                                    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{latestReply}</ReactMarkdown>
                                 </div>
                                 )
-
                             }
                         </>
                     )
