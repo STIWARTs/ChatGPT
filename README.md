@@ -1,1 +1,1 @@
-# PersonalGPT
+# ChatGPT

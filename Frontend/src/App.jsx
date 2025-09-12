@@ -12,6 +12,7 @@ function App() {
   const [currThreadId, setCurrThreadId] = useState(uuidv1());
   const [prevChats, setPrevChats] = useState([]); //array of chat threads--stores all chats of curr thread
   const [newChat, setNewChat] = useState(true); //boolean to check if new chat is created
+  const [allThreads, setAllThreads] = useState([]); //array of all chat threads
 
   //object
   const providerValues = {
@@ -20,6 +21,7 @@ function App() {
     currThreadId, setCurrThreadId,
     newChat, setNewChat,
     prevChats, setPrevChats
+    allThreads, setAllThreads
   }; //passing values to context provider
 
   return (
