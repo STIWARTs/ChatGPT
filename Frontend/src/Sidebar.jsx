@@ -45,6 +45,26 @@ function Sidebar() {
             console.log(err);
         }
     }   
+
+    const deleteThread = async (threadId) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/thread/${threadId}`, {method: "DELETE"});
+            const res = await response.json();
+            console.log(res);
+
+            //updated threads re-render --so that no need to manually refresh
+            setAllThreads(prev => prev.filter(thread => thread.threadId !== threadId));
+            
+            // if current thread is deleted, then create new chat
+            if(threadId === currThreadId) {
+                createNewChat();
+            }
+
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
     return (
         <section className="sidebar">
             {/* new chat button */}
@@ -62,6 +82,12 @@ function Sidebar() {
                             className={thread.threadId === currThreadId ? "highlighted": " "}
                         >
                             {thread.title}
+                            <i className="fa-solid fa-trash"
+                                onClick={(e) => {
+                                    e.stopPropagation(); //stop event bubbling--parent bhi trigger ho rha as child trigger hota
+                                    deleteThread(thread.threadId);//passing threadId to delete
+                                }}
+                            ></i>
                         </li>
                     ))
                 }
