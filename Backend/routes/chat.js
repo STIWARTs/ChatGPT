@@ -1,6 +1,6 @@
 import express from "express";
 import Thread from "../models/Thread.js";
-import getOpenAIAPIResponse from "../utils/openai.js";
+import getGeminiAPIResponse from "../utils/gemini.js";
 
 const router = express.Router();
 
@@ -91,8 +91,8 @@ router.post("/chat", async(req, res) => {
             thread.messages.push({role: "user", content: message});
         }
 
-        //4. get response from OpenAI API
-        const assistantReply = await getOpenAIAPIResponse(message);
+        //4. get response from Gemini API
+        const assistantReply = await getGeminiAPIResponse(message);
 
         //5. push/save assistant reply to Db
         thread.messages.push({role: "assistant", content: assistantReply});

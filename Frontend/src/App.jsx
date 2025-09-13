@@ -20,7 +20,7 @@ function App() {
     reply, setReply,
     currThreadId, setCurrThreadId,
     newChat, setNewChat,
-    prevChats, setPrevChats
+    prevChats, setPrevChats,
     allThreads, setAllThreads
   }; //passing values to context provider
 

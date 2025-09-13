@@ -11,12 +11,19 @@ function Chat() {
     const [latestReply, setLatestReply] = useState(null); 
 
     useEffect(() => { //latestReply separate => typing effect create
-        if(reply === null) {
+        if(reply === null || reply === undefined) {
             setLatestReply(null); //prevchat load
             return;
         }
 
         if(!prevChats?.length) return;
+
+        // Ensure reply is a string before calling split
+        if(typeof reply !== 'string') {
+            console.error("Reply is not a string:", reply);
+            setLatestReply("Error: Invalid response format");
+            return;
+        }
 
         const content = reply.split(" "); //individual words
 
